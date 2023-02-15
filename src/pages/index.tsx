@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import Link from "next/link";
 
 export const config = {
   runtime: "experimental-edge",
@@ -30,6 +31,7 @@ const Home: NextPage<{ runtime: string; uuid: string }> = ({
         </Head>
 
         <main className={styles.main}>
+            <Link href={'/pages/2'}>이동</Link>
           <h1 className={styles.title}>
             Welcome to{" "}
             <a href="https://nextjs.org">Next.js, running at the {runtime}!</a>
@@ -48,3 +50,5 @@ const Home: NextPage<{ runtime: string; uuid: string }> = ({
       </div>
   );
 };
+
+export default Home
