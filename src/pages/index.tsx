@@ -39,7 +39,7 @@ const Home: NextPage<{ runtime: string; uuid: string; slug: number; type: string
             <main>
                 <div>랜덤 UUID : {uuid}</div>
                 <div>현재 runtime : {runtime}</div>
-                <Link href={`/pages/${type}/${slug}`}>${`/pages/${type}/${slug}`}</Link>
+                <Link href={`/pages/${type}/${slug}`}>{`/pages/${type}/${slug}`}</Link>
             </main>
         </div>
     );

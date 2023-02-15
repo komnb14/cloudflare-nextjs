@@ -10,22 +10,24 @@ export function parsePath(pathname: string, ctx: NextPageContext): any {
 }
 
 export const getServerSideProps = async (ctx: NextPageContext) => {
+    console.log(ctx.query);
     const {slug, type} = parsePath('/pages/:type/:slug', ctx)
     return {
         props: {
             slug: slug,
             type: type,
+            ctx: ctx.query,
         }
     }
 };
 
-const Slug = ({slug, type}: { slug: number, type: string }) => {
+const Slug = ({slug, type,ctx}: { slug: number, type: string,ctx: NextPageContext }) => {
 
     console.log(type,slug)
     return (
         <div>
             <div>현재 URL :{`/pages/${type}/${slug}`}</div>
-
+            {ctx && JSON.stringify(ctx)}
         </div>
     );
 };
