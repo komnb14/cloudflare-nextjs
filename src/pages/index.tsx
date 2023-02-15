@@ -1,4 +1,3 @@
-import type {NextPage} from "next";
 import Head from "next/head";
 import Link from "next/link";
 
@@ -22,12 +21,7 @@ export const getServerSideProps = async () => {
     };
 };
 
-const Home: NextPage<{ runtime: string; uuid: string; slug: number; type: string }> = ({
-                                                                                           runtime,
-                                                                                           uuid,
-                                                                                           slug, type
-                                                                                       }) => {
-
+const Home = ({runtime, uuid, slug, type}: { runtime: string; uuid: string; slug: number; type: string }) => {
 
     return (
         <div>
