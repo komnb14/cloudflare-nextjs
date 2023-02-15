@@ -1,30 +1,33 @@
 import type {NextPage} from "next";
 import Head from "next/head";
 import Link from "next/link";
-import {useMemo} from "react";
 
 export const config = {
     runtime: "experimental-edge",
 };
 
 export const getServerSideProps = async () => {
+    const random = Math.floor(Math.random() * 99 + 1);
+    const randomNumberGetType = Math.floor(Math.random() * 2 + 1);
+    const randomType = ['type', 'test', 'hello'];
     return {
         props: {
             runtime: process.env.NEXT_RUNTIME,
             uuid: await fetch("https://uuid.rocks/plain").then((response) =>
                 response.text()
             ),
+            slug: random,
+            type: randomType[randomNumberGetType]
         },
     };
 };
 
-const Home: NextPage<{ runtime: string; uuid: string }> = ({
-                                                               runtime,
-                                                               uuid,
-                                                           }) => {
-    const random = useMemo(() => Math.floor(Math.random() * 99 + 1),[]);
-    const randomNumberGetType = useMemo(() => Math.floor(Math.random() * 2 + 1),[]);
-    const randomType = ['type', 'test', 'hello'];
+const Home: NextPage<{ runtime: string; uuid: string; slug: number; type: string }> = ({
+                                                                                           runtime,
+                                                                                           uuid,
+                                                                                           slug, type
+                                                                                       }) => {
+
 
     return (
         <div>
@@ -36,7 +39,7 @@ const Home: NextPage<{ runtime: string; uuid: string }> = ({
             <main>
                 <div>랜덤 UUID : {uuid}</div>
                 <div>현재 runtime : {runtime}</div>
-                <Link href={`/pages/${randomType[randomNumberGetType]}/${random}`}>{`/pages/${randomType[randomNumberGetType]}/${random}`}</Link>
+                <Link href={`/pages/${type}/${slug}`}>${`/pages/${type}/${slug}`}</Link>
             </main>
         </div>
     );
