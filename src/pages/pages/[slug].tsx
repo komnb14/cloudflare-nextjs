@@ -1,5 +1,6 @@
 import React from 'react';
-import {GetServerSideProps} from "next";
+import {GetServerSideProps, NextPageContext} from "next";
+import {URLPattern} from "next/server";
 
 
 type params = {
@@ -10,23 +11,22 @@ export const config = {
     runtime: "experimental-edge",
 };
 
-export const getServerSideProps:GetServerSideProps = async ({params}) => {
-    if(!params?.slug) {
-        return {
-            props: {
-                params: 0,
-            },
-        };
-    }
-        return {
-            props: {
-                params: params.slug,
-            },
-        };
+export function parsePath(pathname: string, ctx: NextPageContext): any {
+    const pattern = new URLPattern({pathname});
+    const result = pattern.exec(`http://host${ctx.req?.url}`);
+    return result?.pathname.groups || {};
+}
 
+export const getServerSideProps = async (ctx: NextPageContext) => {
+    const {slug} = parsePath('/pages/:slug', ctx)
+    return {
+        props: {
+            params: slug
+        }
+    }
 };
 
-const Slug = ({params}:{params: number}) => {
+const Slug = ({params}: { params: number }) => {
 
     return (
         <div>
