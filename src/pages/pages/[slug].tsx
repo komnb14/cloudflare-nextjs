@@ -6,10 +6,17 @@ type params = {
     slug: number
 }
 
+export const config = {
+    runtime: "experimental-edge",
+};
 
 export const getServerSideProps:GetServerSideProps = async ({params}) => {
     if(!params?.slug) {
-        throw "No Slug";
+        return {
+            props: {
+                params: 0,
+            },
+        };
     }
         return {
             props: {
