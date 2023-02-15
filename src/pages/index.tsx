@@ -1,6 +1,7 @@
 import type {NextPage} from "next";
 import Head from "next/head";
 import Link from "next/link";
+import {useMemo} from "react";
 
 export const config = {
     runtime: "experimental-edge",
@@ -21,8 +22,8 @@ const Home: NextPage<{ runtime: string; uuid: string }> = ({
                                                                runtime,
                                                                uuid,
                                                            }) => {
-    const random = Math.floor(Math.random() * 99 + 1);
-    const randomNumberGetType = Math.floor(Math.random() * 2 + 1);
+    const random = useMemo(() => Math.floor(Math.random() * 99 + 1),[]);
+    const randomNumberGetType = useMemo(() => Math.floor(Math.random() * 2 + 1),[]);
     const randomType = ['type', 'test', 'hello'];
 
     return (
