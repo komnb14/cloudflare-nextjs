@@ -3,14 +3,6 @@ import {GetServerSideProps, NextPageContext} from "next";
 import {URLPattern} from "next/server";
 
 
-type params = {
-    slug: number
-}
-
-export const config = {
-    runtime: "experimental-edge",
-};
-
 export function parsePath(pathname: string, ctx: NextPageContext): any {
     const pattern = new URLPattern({pathname});
     const result = pattern.exec(`http://host${ctx.req?.url}`);
@@ -18,19 +10,22 @@ export function parsePath(pathname: string, ctx: NextPageContext): any {
 }
 
 export const getServerSideProps = async (ctx: NextPageContext) => {
-    const {slug} = parsePath('/pages/:slug', ctx)
+    const {slug, type} = parsePath('/pages/:type/:slug', ctx)
     return {
         props: {
-            params: slug
+            slug: slug,
+            type: type,
         }
     }
 };
 
-const Slug = ({params}: { params: number }) => {
+const Slug = ({slug, type}: { slug: number, type: string }) => {
 
+    console.log(type,slug)
     return (
         <div>
-            {params}
+            <div>현재 URL :{`/pages/${type}/${slug}`}</div>
+
         </div>
     );
 };
