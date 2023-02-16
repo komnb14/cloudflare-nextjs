@@ -4,7 +4,18 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     runtime: "experimental-edge",
-  }
+  },
+  headers: () => [
+    {
+      source: '/',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'no-store',
+        },
+      ],
+    },
+  ],
 }
 
 module.exports = nextConfig
