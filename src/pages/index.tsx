@@ -1,11 +1,15 @@
 import Head from "next/head";
 import Link from "next/link";
+import {NextPageContext} from "next";
 
 export const config = {
     runtime: "experimental-edge",
 };
 
-export const getServerSideProps = async () => {
+
+export const revalidate = 0
+
+export const getServerSideProps = async ({res}:NextPageContext) => {
     const random = Math.floor(Math.random() * 99 + 1);
     const randomNumberGetType = Math.floor(Math.random() * 2 + 1);
     const randomType = ['type', 'test', 'hello'];

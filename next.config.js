@@ -5,17 +5,6 @@ const nextConfig = {
   experimental: {
     runtime: "experimental-edge",
   },
-  headers: () => [
-    {
-      source: '/',
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'no-store',
-        },
-      ],
-    },
-  ],
 }
 
 module.exports = nextConfig
