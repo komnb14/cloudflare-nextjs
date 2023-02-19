@@ -1,20 +1,20 @@
 import Head from "next/head";
 import Link from "next/link";
-import {NextPageContext} from "next";
+import {GetServerSideProps, NextPageContext} from "next";
 
-export const config = {
-    runtime: "experimental-edge",
-};
+interface getRandom {
+    runtime: string
+    uuid: any
+    slug: number,
+    type: 'type' |  'test' |  'hello';
+}
 
-
-export const revalidate = 0
 
 export const getServerSideProps = async ({res}:NextPageContext) => {
     const random = Math.floor(Math.random() * 99 + 1);
     const randomNumberGetType = Math.floor(Math.random() * 2 + 1);
     const randomType = ['type', 'test', 'hello'];
-    // @ts-ignore
-    res?.headers?.append('x-workers-hello', 'Hello from Cloudflare Workers');
+
     return {
         props: {
             runtime: process.env.NEXT_RUNTIME,

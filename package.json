@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:wrangler" : "npx wrangler pages dev .vercel/output/static --compatibility-flags=streams_enable_constructors",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
